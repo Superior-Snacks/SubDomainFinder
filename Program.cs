@@ -8,7 +8,7 @@ namespace subDomainFinder
     {
         static async Task Main(string[] args)
         {
-            string domain = "islandsbanki.is";
+            string domain = "youtube.com";
             IPAddress[] ips = await Dns.GetHostAddressesAsync(domain);
             foreach (var item in ips)
             {
