@@ -1,2 +1,10 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿namespace subDomainFinder
+{
+    class Project
+    {
+        static void Main(string[] args)
+        {
+
+        }
+    }
+}
