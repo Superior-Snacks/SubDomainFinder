@@ -15,11 +15,11 @@ namespace subDomainFinder
                 Thread.Sleep(400);
                 Console.WriteLine(item);
             }
-            bool trying = true;
+            /*
             do
             {
-
-            } while (trying);
+                Dns.GetHostByAddress(trial);
+            } while (trying);*/
             Console.ReadLine();
         }
     }
