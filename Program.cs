@@ -22,5 +22,9 @@ namespace subDomainFinder
             } while (trying);*/
             Console.ReadLine();
         }
+        static IPAddress[] buildIP(List<string>adress)
+        {
+            return new;
+        }
     }
 }
