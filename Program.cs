@@ -15,6 +15,7 @@ namespace subDomainFinder
                 Thread.Sleep(400);
                 Console.WriteLine(item);
             }
+            Console.ReadLine();
         }
     }
 }
