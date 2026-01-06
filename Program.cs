@@ -32,7 +32,8 @@ namespace subDomainFinder
         {
             for (int i = 0; i < sentance.Length; i++)
             {
-                Thread.Sleep
+                Thread.Sleep(20);
+                Console.WriteLine(sentance[i]);
             }
         }
     }
