@@ -28,5 +28,12 @@ namespace subDomainFinder
             var adressS = Convert.ToString(adress);
             return new;
         }
+        static void printSlow(string sentance)
+        {
+            for (int i = 0; i < sentance.Length; i++)
+            {
+                Thread.Sleep
+            }
+        }
     }
 }
