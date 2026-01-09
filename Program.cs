@@ -22,6 +22,7 @@ namespace subDomainFinder
             } while (trying);*/
             Console.ReadLine();
         }
+        //xxx.xxx.xxx.xxx
         static IPAddress[] buildIP(List<string>adress)
         {
             var adressS = Convert.ToString(adress);
