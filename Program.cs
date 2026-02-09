@@ -39,7 +39,8 @@ class Program
                     newDomains.Add(item);
                 }
             }
-            File.WriteAllLines(filePath, discovered); // add all to file since they are no longer new
+            var masterList = previous.Union(discovered).OrderBy(x => x).ToList();
+            File.WriteAllLines(filePath, masterList); // add all to file since they are no longer new
 
             Console.WriteLine($"Total subdomains found: {discovered.Count}"); //logging
             Console.WriteLine($"New subdomains discovered: {newDomains.Count}");
