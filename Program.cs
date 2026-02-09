@@ -32,6 +32,13 @@ class Program
                 : new HashSet<string>();
 
             var newDomains = new HashSet<string>();
+            foreach (var item in discovered)
+            {
+                if (!previous.Contains(item))
+                {
+                    newDomains.Add(item);
+                }
+            }
         }
     }
 }
