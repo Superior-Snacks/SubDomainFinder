@@ -11,10 +11,11 @@ namespace subDomainFinder
         {
             string domain = "youtube.com";
             IPAddress[] ips = await Dns.GetHostAddressesAsync(domain);
-            foreach (var item in ips)
+            IPHostEntry hostInfo = Dns.GetHostEntry(domain);
+            foreach (IPAddress ip in hostInfo.AddressList)
             {
-                Thread.Sleep(400);
-                printSlow(item);
+                Thread.Sleep(200);
+                Console.WriteLine($" - IP: {ip}");
             }
             Console.ReadLine();
         }
