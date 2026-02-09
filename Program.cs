@@ -14,7 +14,7 @@ class Program
         static async Task Main()
         {
             // Example Range: A subset of the Siminn range you mentioned
-            string baseIp = "89.104.145.";
+            string baseIp = "89.104.145.151";
             var tasks = new List<Task>();
 
             Console.WriteLine("Scanning IPs for SSL Certificates...\n");
