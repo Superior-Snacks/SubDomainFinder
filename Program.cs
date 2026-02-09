@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System;
+using DnsClient;
 using System.Threading.Tasks;
 
 namespace subDomainFinder
@@ -13,20 +14,9 @@ namespace subDomainFinder
             foreach (var item in ips)
             {
                 Thread.Sleep(400);
-                Console.WriteLine(item);
+                printSlow(item);
             }
-            /*
-            do
-            {
-                Dns.GetHostByAddress(trial);
-            } while (trying);*/
             Console.ReadLine();
-        }
-        //xxx.xxx.xxx.xxx
-        static IPAddress[] buildIP(List<string>adress)
-        {
-            var adressS = Convert.ToString(adress);
-            return new;
         }
         static void printSlow(string sentance)
         {
