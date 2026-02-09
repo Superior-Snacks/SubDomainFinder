@@ -50,6 +50,7 @@ class Program
         }
         static async Task<HashSet<string>> GetSubdomainsFromCrtSh(string domain) //static(only used in this script) async lest me use await task(async method)
         {
+            var subs = new HashSet<string>(); //return group
             string url = $"https://crt.sh/?q=%25.{domain}&output=json"; // url encoding for the api
             using var client = new HttpClient();
             client.DefaultRequestHeaders.UserAgent.ParseAdd("subDomainFinder/1.0");
@@ -64,9 +65,13 @@ class Program
                 var names = nameValue.GetString().Split('\n'); //may be multiple names per
                 foreach (var name in names)
                 {
-
+                    if (name.EndsWith(domain))
+                    {
+                        subs.Add(name.Trim().ToLower());
+                    }
                 }
             }
+            return subs;
         }
 
     }
