@@ -53,6 +53,9 @@ class Program
             string url = $"https://crt.sh/?q=%25.{domain}&output=json"; // url encoding for the api
             using var client = new HttpClient();
             client.DefaultRequestHeaders.UserAgent.ParseAdd("subDomainFinder/1.0");
+
+            var response = await client.GetStringAsync(url);
+
         }
 
     }
