@@ -47,5 +47,10 @@ class Program
             foreach (var sub in newDomains) // show the new domains
                 Console.WriteLine($"[NEW] {sub}");
         }
+        static async Task<HashSet<string>> GetSubdomainsFromCrtSh(string domain)
+        {
+
+        }
+
     }
 }
