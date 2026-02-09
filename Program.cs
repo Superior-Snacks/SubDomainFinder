@@ -43,6 +43,9 @@ class Program
 
             Console.WriteLine($"Total subdomains found: {discovered.Count}"); //logging
             Console.WriteLine($"New subdomains discovered: {newDomains.Count}");
+
+            foreach (var sub in newDomains) // show the new domains
+                Console.WriteLine($"[NEW] {sub}");
         }
     }
 }
