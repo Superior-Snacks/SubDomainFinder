@@ -59,7 +59,7 @@ class Program
 
             foreach (var item in json.RootElement.EnumerateArray())
             {
-                if (!entry.TryGetProperty("name_value", out var nameValue))
+                if (!entry.TryGetProperty("name_value", out var nameValue)) // maybe bad formatting must protect
                     continue;
             }
         }
