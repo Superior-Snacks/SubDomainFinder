@@ -26,6 +26,8 @@ class Program
             string filePath = $"{domain}_subs.txt"; //create file path string for domain or find the path if domain already found
 
             var discovered = await GetSubdomainsFromCrtSh(domain); //main call in file gets list from the function
+
+            HashSet<string> previous = File.Exists(filePath);
         }
     }
 }
