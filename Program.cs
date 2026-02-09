@@ -61,8 +61,8 @@ class Program
             {
                 if (!entry.TryGetProperty("name_value", out var nameValue)) // maybe bad formatting must protect
                     continue;
-                var names = nameValue.GetString().Split('\n'); //may be multiple names per 
-                if (names.EndsWith)
+                var names = nameValue.GetString().Split('\n'); //may be multiple names per
+                foreach (var name in names)
                 {
 
                 }
