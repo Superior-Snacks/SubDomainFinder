@@ -31,15 +31,15 @@ class Program
                 ? new HashSet<string>(File.ReadAllLines(filePath))// if the file exists
                 : new HashSet<string>(); //else
 
-            var newDomains = new HashSet<string>();
+            var newDomains = new HashSet<string>(); //empty init
             foreach (var item in discovered)
             {
-                if (!previous.Contains(item))
+                if (!previous.Contains(item))//if the item is not in file add it, all will be added if first time
                 {
                     newDomains.Add(item);
                 }
             }
-            File.WriteAllLines(filePath, discovered);
+            File.WriteAllLines(filePath, discovered); // add all to file since they are no longer new
         }
     }
 }
