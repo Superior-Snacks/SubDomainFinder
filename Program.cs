@@ -30,6 +30,8 @@ class Program
             HashSet<string> previous = File.Exists(filePath)
                 ? new HashSet<string>(File.ReadAllLines(filePath))
                 : new HashSet<string>();
+
+            var newDomains = new HashSet<string>();
         }
     }
 }
