@@ -48,9 +48,9 @@ class Program
             foreach (var sub in newDomains) // show the new domains
                 Console.WriteLine($"[NEW] {sub}");
         }
-        static async Task<HashSet<string>> GetSubdomainsFromCrtSh(string domain)
+        static async Task<HashSet<string>> GetSubdomainsFromCrtSh(string domain) //static(only used in this script) async lest me use await task(async method)
         {
-
+            string url = $"https://crt.sh/?q=%25.{domain}&output=json";
         }
 
     }
