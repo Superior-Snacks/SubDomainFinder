@@ -18,13 +18,6 @@ class Program
         static async Task Main()
         {
             string baseIp = "89.104.145.151";
-            Console.WriteLine("\nScan Complete.");
         }
-        static async Task<HashSet<string>> GetSubdomainsFromCrtSh(string domain)
-        {
-            return null;
-        }
-
-
     }
 }
