@@ -27,9 +27,9 @@ class Program
 
             var discovered = await GetSubdomainsFromCrtSh(domain); //main call in file gets list from the function
 
-            HashSet<string> previous = File.Exists(filePath)
-                ? new HashSet<string>(File.ReadAllLines(filePath))
-                : new HashSet<string>();
+            HashSet<string> previous = File.Exists(filePath) // a cleaner way to check if there is a file for 
+                ? new HashSet<string>(File.ReadAllLines(filePath))// if the file exists
+                : new HashSet<string>(); //else
 
             var newDomains = new HashSet<string>();
             foreach (var item in discovered)
@@ -39,6 +39,7 @@ class Program
                     newDomains.Add(item);
                 }
             }
+            File.WriteAllLines(filePath, discovered);
         }
     }
 }
