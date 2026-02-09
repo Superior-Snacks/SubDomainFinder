@@ -55,7 +55,7 @@ class Program
             client.DefaultRequestHeaders.UserAgent.ParseAdd("subDomainFinder/1.0");
 
             var response = await client.GetStringAsync(url);
-
+            var json = JsonDocument.Parse(response); //json spesific reader
         }
 
     }
