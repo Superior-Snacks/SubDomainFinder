@@ -17,12 +17,13 @@ class Program
     {
         static async Task Main(string[] args)
         {
-            if (args.Length != 1)
+            /*if (args.Length != 1)
             {
                 Console.WriteLine("usage subDomainFinder.exe domains");
                 return;
             }
-            string domain = args[0]; //get domain from args text
+            string domain = args[0];*/ //get domain from args text
+            string domain = "landsbankinn.is";
             string filePath = $"{domain}_subs.txt"; //create file path string for domain or find the path if domain already found
 
             var discovered = await GetSubdomainsFromCrtSh(domain); //main call in file gets list from the function
