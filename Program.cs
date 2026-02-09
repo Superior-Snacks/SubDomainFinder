@@ -57,10 +57,15 @@ class Program
             var response = await client.GetStringAsync(url);
             var json = JsonDocument.Parse(response); //json spesific reader
 
-            foreach (var item in json.RootElement.EnumerateArray())
+            foreach (var entry in json.RootElement.EnumerateArray())
             {
                 if (!entry.TryGetProperty("name_value", out var nameValue)) // maybe bad formatting must protect
                     continue;
+                var names = nameValue.GetString().Split('\n'); //may be multiple names per 
+                if (names.EndsWith)
+                {
+
+                }
             }
         }
 
