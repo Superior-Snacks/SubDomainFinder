@@ -27,7 +27,9 @@ class Program
 
             var discovered = await GetSubdomainsFromCrtSh(domain); //main call in file gets list from the function
 
-            HashSet<string> previous = File.Exists(filePath);
+            HashSet<string> previous = File.Exists(filePath)
+                ? new HashSet<string>(File.ReadAllLines(filePath))
+                : new HashSet<string>();
         }
     }
 }
