@@ -56,6 +56,12 @@ class Program
 
             var response = await client.GetStringAsync(url);
             var json = JsonDocument.Parse(response); //json spesific reader
+
+            foreach (var item in json.RootElement.EnumerateArray())
+            {
+                if (!entry.TryGetProperty("name_value", out var nameValue))
+                    continue;
+            }
         }
 
     }
