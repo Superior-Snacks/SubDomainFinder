@@ -20,7 +20,12 @@ class Program
             if (args.Length != 1)
             {
                 Console.WriteLine("usage subDomainFinder.exe domains");
+                return;
             }
+            string domain = args[0]; //get domain from args text
+            string filePath = $"{domain}_subs.txt"; //create file path string for domain or find the path if domain already found
+
+            var discovered = await GetSubdomainsFromCrtSh(domain); //main call in file gets list from the function
         }
     }
 }
