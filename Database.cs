@@ -36,5 +36,10 @@ namespace subDomainFinder
                 connection.Execute(sql);
             }
         }
+
+        public static HashSet<string> getExistingSubdomains(string rootDomain)
+        {
+
+        }
     }
 }
