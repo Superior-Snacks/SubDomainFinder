@@ -119,7 +119,7 @@ public static class DiscordReporter
                 }
             };
 
-            var payload = new[]
+            var payload = new
             {
                 username = "Recon Bot",
                 avatar_url = "https://i.imgur.com/4M34hi2.png", // Optional: Custom bot icon
