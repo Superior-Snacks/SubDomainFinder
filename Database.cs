@@ -15,7 +15,7 @@ namespace subDomainFinder
 
         public static void Initialize()
         {
-            if (!File.Exists(DbFile))
+            if (!System.IO.File.Exists(DbFile))
             {
                 SQLiteConnection.CreateFile(DbFile);
             }
