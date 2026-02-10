@@ -122,7 +122,10 @@ public static class DiscordReporter
                     Console.WriteLine("[+] Discord notification sent!");
                 else
                     Console.WriteLine($"[-] Discord Error: {response.StatusCode}");
-                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[-] Failed to send to Discord: {ex.Message}");
             }
         }
         
