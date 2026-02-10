@@ -37,7 +37,7 @@ namespace subDomainFinder
             }
         }
 
-        public static HashSet<string> getExistingSubdomains(string rootDomain)
+        public static HashSet<string> GetExistingSubdomains(string rootDomain)
         {
             using (var connection = new SQLiteConnection(ConnectionString))
             {
