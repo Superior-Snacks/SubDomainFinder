@@ -39,7 +39,36 @@ namespace subDomainFinder
 
         public static HashSet<string> getExistingSubdomains(string rootDomain)
         {
+            using (var connection = new SQLiteConnection(ConnectionString))
+            {
+                // Dapper maps the result straight to a string
+                var results = connection.Query<string>(
+                    "SELECT Subdomain FROM Subdomains WHERE RootDomain = @RootDomain",
+                    new { RootDomain = rootDomain }
+                );
 
+                return new HashSet<string>(results);
+            }
+        }
+
+        public static void insertSubdomains(string rootDomain, IEnumerable<string> newSubs)
+        {
+            using (var connection = new SQLiteConnection(ConnectionString))
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    // We use 'INSERT OR IGNORE' so if the subdomain exists, SQL does nothing.
+                    string sql = "INSERT OR IGNORE INTO Subdomains (RootDomain, Subdomain) VALUES (@RootDomain, @Subdomain)";
+
+                    foreach (var sub in newSubs)
+                    {
+                        connection.Execute(sql, new { RootDomain = rootDomain, Subdomain = sub });
+                    }
+
+                    transaction.Commit();
+                }
+            }
         }
     }
 }
