@@ -42,6 +42,19 @@ class Program
                     newDomains.Add(item);
                 }
             }
+            if (newDomains.Count > 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                foreach (var sub in newDomains)
+                {
+                    Console.WriteLine($"[NEW] {sub}");
+                }
+
+                // 🔥 THE NEW LINE 🔥
+                await DiscordReporter.SendReportAsync(domain, newDomains.ToList());
+
+                Console.ResetColor();
+            }
             var masterList = previous.Union(discovered).OrderBy(x => x).ToList();
             File.WriteAllLines(filePath, masterList); // add all to file since they are no longer new
 
