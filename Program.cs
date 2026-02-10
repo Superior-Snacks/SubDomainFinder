@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net.Security;
 using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -98,8 +99,31 @@ public static class DiscordReporter
                     value = FormatList(newSubdomains), // Discord has a 1024 char limit per field
                     inline = false
                     }
+                },
+                footer = new
+                {
+                    text = $"Scanner Bot • {DateTime.Now:HH:mm:ss}"
                 }
             };
+
+            var payload = new[]
+            {
+                username = "Recon Bot",
+                avatar_url = "https://i.imgur.com/4M34hi2.png", // Optional: Custom bot icon
+                embeds = new[] { embed }
+            };
+            string json = JsonSerializer.Serialize(payload);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            try
+            {
+                var response = await client.PostAsync(webHookUrl, content);
+                if (response.IsSuccessStatusCode)
+                    Console.WriteLine("[+] Discord notification sent!");
+                else
+                    Console.WriteLine($"[-] Discord Error: {response.StatusCode}");
+                
+            }
         }
         
     }
