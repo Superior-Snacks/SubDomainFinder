@@ -51,7 +51,7 @@ namespace subDomainFinder
             }
         }
 
-        public static void insertSubdomains(string rootDomain, IEnumerable<string> newSubs)
+        public static void InsertSubdomains(string rootDomain, IEnumerable<string> newSubs)
         {
             using (var connection = new SQLiteConnection(ConnectionString))
             {

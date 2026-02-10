@@ -33,10 +33,10 @@ class Program
 
             var knownSubdomains = Database.GetExistingSubdomains(domain);
 
-            var newDomains = new HashSet<string>(); //empty init
+            var newDomains = new List<string>();
             foreach (var item in discovered)
             {
-                if (!previous.Contains(item))//if the item is not in file add it, all will be added if first time
+                if (!knownSubdomains.Contains(item))
                 {
                     newDomains.Add(item);
                 }
@@ -44,24 +44,27 @@ class Program
             if (newDomains.Count > 0)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"[+] Found {newDomains.Count} new subdomains!");
+
+                // Print to console
                 foreach (var sub in newDomains)
                 {
                     Console.WriteLine($"[NEW] {sub}");
                 }
-
-                // 🔥 THE NEW LINE 🔥
-                await DiscordReporter.SendReportAsync(domain, newDomains.ToList());
-
                 Console.ResetColor();
+
+                // Send to Discord
+                await DiscordReporter.SendReportAsync(domain, newDomains);
+
+                // 6. Save to SQL
+                // REPLACED: File.WriteAllLines(...)
+                Console.WriteLine("[+] Saving to database...");
+                Database.InsertSubdomains(domain, newDomains);
             }
-            var masterList = previous.Union(discovered).OrderBy(x => x).ToList();
-            File.WriteAllLines(filePath, masterList); // add all to file since they are no longer new
-
-            Console.WriteLine($"Total subdomains found: {discovered.Count}"); //logging
-            Console.WriteLine($"New subdomains discovered: {newDomains.Count}");
-
-            foreach (var sub in newDomains) // show the new domains
-                Console.WriteLine($"[NEW] {sub}");
+            else
+            {
+                Console.WriteLine("[-] No new subdomains found.");
+            }
         }
         static async Task<HashSet<string>> GetSubdomainsFromCrtSh(string domain) //static(only used in this script) async lest me use await task(async method)
         {
