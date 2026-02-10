@@ -11,7 +11,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-//string baseIp = "89.104.145.151";
+using Dapper;
 
 namespace subDomainFinder
 {
@@ -25,7 +25,7 @@ class Program
                 return;
             }
             string domain = args[0];*/ //get domain from args text
-            string domain = "landsbankinn.is";
+            string domain = "geoguessr.com";
             string filePath = $"{domain}_subs.txt"; //create file path string for domain or find the path if domain already found
 
             var discovered = await GetSubdomainsFromCrtSh(domain); //main call in file gets list from the function
