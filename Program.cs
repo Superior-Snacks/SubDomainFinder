@@ -145,9 +145,11 @@ public static class DiscordReporter
         {
             var sb = new StringBuilder("```diff\n");
 
-            foreach (var sub in subs)
+            int limit = Math.Min(subs.Count, 20);
+
+            for (int i = 0; i < limit; i++)
             {
-                sb.AppendLine($"+ {sub}");
+                sb.AppendLine($"+ {subs[i]}");
             }
             if (subs.Count > 20)
                 sb.AppendLine($"... and {subs.Count - 20} more");
