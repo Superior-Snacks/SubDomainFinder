@@ -1,14 +1,15 @@
 ﻿using DnsClient;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Net.Security;
 using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.IO;
-using System.Net.Http;
 using System.Text.Json;
+using System.Threading.Tasks;
+using System.Xml.Linq;
 //string baseIp = "89.104.145.151";
 
 namespace subDomainFinder
@@ -80,5 +81,26 @@ public static class DiscordReporter
         private static readonly string webHookUrl = "https://discord.com/api/webhooks/1470497653417836605/3LbZAkJTydoE5uNl-NEwxSTNvNszuZRTkAy3oJY3QQEU2YQwiEegpCW2cAmCyKHgihE7";
 
         private static readonly HttpClient client = new HttpClient();
+
+        public static async Task SendReportAsync(string targetDomain, List<string> newSubdomains)
+        {
+            if (newSubdomains.Count == 0) return;
+            var embed = new
+            {
+                title = $"🚨 New Targets Detected: {targetDomain}",
+                description = $"Found **{newSubdomains.Count}** new subdomain(s).",
+                color = 5763719,
+                fields = new[] 
+                {
+                    new
+                    {
+                    name = "Subdomains",
+                    value = FormatList(newSubdomains), // Discord has a 1024 char limit per field
+                    inline = false
+                    }
+                }
+            };
+        }
+        
     }
 }
