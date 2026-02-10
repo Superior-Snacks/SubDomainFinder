@@ -74,6 +74,11 @@ class Program
             }
             return subs;
         }
+    }
+public static class DiscordReporter
+    {
+        private static readonly string webHookUrl = "https://discord.com/api/webhooks/1470497653417836605/3LbZAkJTydoE5uNl-NEwxSTNvNszuZRTkAy3oJY3QQEU2YQwiEegpCW2cAmCyKHgihE7";
 
+        private static readonly HttpClient client = new HttpClient();
     }
 }
