@@ -128,6 +128,19 @@ public static class DiscordReporter
                 Console.WriteLine($"[-] Failed to send to Discord: {ex.Message}");
             }
         }
-        
+        private static string FormatList(List<string> subs)
+        {
+            var sb = new StringBuilder("```diff\n");
+
+            foreach (var sub in subs)
+            {
+                sb.AppendLine($"+ {sub}");
+            }
+            if (subs.Count > 20)
+                sb.AppendLine($"... and {subs.Count - 20} more");
+
+            sb.Append("```");
+            return sb.ToString();
+        }
     }
 }
