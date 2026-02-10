@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
+using Microsoft.Data.Sqlite;
 using System.IO;
 using System.Linq;
 using static System.Net.WebRequestMethods;
@@ -11,16 +11,11 @@ namespace subDomainFinder
     public static class Database
     {
         private static string DbFile = "recon.db";
-        private static string ConnectionString = $"Data Source={DbFile};Version=3;";
+        private static string ConnectionString = $"Data Source={DbFile}";
 
         public static void Initialize()
         {
-            if (!System.IO.File.Exists(DbFile))
-            {
-                SQLiteConnection.CreateFile(DbFile);
-            }
-
-            using (var connection = new SQLiteConnection(ConnectionString))
+            using (var connection = new SqliteConnection(ConnectionString))
             {
                 connection.Open();
                 // We create a table with a UNIQUE constraint on the Subdomain column
@@ -39,7 +34,7 @@ namespace subDomainFinder
 
         public static HashSet<string> GetExistingSubdomains(string rootDomain)
         {
-            using (var connection = new SQLiteConnection(ConnectionString))
+            using (var connection = new SqliteConnection(ConnectionString))
             {
                 // Dapper maps the result straight to a string
                 var results = connection.Query<string>(
@@ -53,7 +48,7 @@ namespace subDomainFinder
 
         public static void InsertSubdomains(string rootDomain, IEnumerable<string> newSubs)
         {
-            using (var connection = new SQLiteConnection(ConnectionString))
+            using (var connection = new SqliteConnection(ConnectionString))
             {
                 connection.Open();
                 using (var transaction = connection.BeginTransaction())
